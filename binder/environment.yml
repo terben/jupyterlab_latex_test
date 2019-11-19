@@ -2,3 +2,4 @@ name: jupyterlab_latex_test
 
 dependencies:
   - python>=3.7
+  - nodejs
