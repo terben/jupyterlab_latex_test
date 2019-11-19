@@ -1,1 +1,2 @@
+pip install -U jupyterlab_latex
 jupyter labextension install @jupyterlab/latex
