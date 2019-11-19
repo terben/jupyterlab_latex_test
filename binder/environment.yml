@@ -1,5 +1,5 @@
 name: jupyterlab_latex_test
 
 dependencies:
-  - python>=3.7
+  - python>=3.6
   - nodejs
