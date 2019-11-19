@@ -1,0 +1,85 @@
+% Kurzes Demo zum Gebrauch des listings-Pakets, um Programmcode
+% in LaTeX-Dokumente einzubinden.
+\documentclass[12pt, ngerman]{scrartcl}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{babel}
+\usepackage{csquotes}
+
+% Zum Einbinden von Programmcode verwenden wir das listings-Paket
+\usepackage{listings}
+% textcomp ist für korrekte Anführungsstriche in Code-Abshcnitten
+% nötig (Option upquote=true in listings)
+\usepackage{textcomp}
+
+% Für Syntax-Highlighting:
+\usepackage{xcolor}
+
+% lstset setzt Optionen des listings-Pakets
+
+% Die folgenden listings-Einstellungen sind nötig, um
+% deutsche Umlaute und die Tilde (~) in listings-Umgebungen
+% verwenden zu können.
+\lstset{
+  basicstyle=\ttfamily,
+  literate={~} {$\sim$}{1} % set tilde as a literal
+           {ö}{{\"o}}1
+           {ä}{{\"a}}1
+           {ü}{{\"u}}1
+           {ß}{{\ss}}1
+           {Ö}{{\"O}}1
+           {Ä}{{\"A}}1
+           {Ü}{{\"U}}1
+}
+
+% spezieller Stil für bash-Shell:
+\lstdefinestyle{bash}{language=bash,%
+ commentstyle=\color{red},       % comment style
+ keywordstyle=\color{blue},      % keyword style
+ upquote=true,     % Korrekte Anführungsstriche in Bash-Codes
+ showspaces=false, % Keine speziellen Zeichen für Spaces
+ showstringspaces=false,
+ breaklines=true,  % lange Zeilen automatisch umbrechen
+ postbreak=\mbox{{$\hookrightarrow$}\space}
+}
+
+% definiere neue Umgebung für bash-Code:
+\lstnewenvironment{lstbash}
+{ \lstset{style=bash} } {}
+
+% neues Kommando zum einfach Einbinden von bash-Quelldateien:
+\newcommand{\lstinputbash}{\lstinputlisting[style=bash]}
+
+\begin{document}
+%
+\section{Programmcodes}
+Einfacher Code (keine spezifische Programmiersprache) wird mit der
+\texttt{lstlistings}-Umgebung eingebunden:
+%
+\begin{lstlisting}
+user$ ls
+datei_1.txt  datei_2.txt
+\end{lstlisting}
+%
+Hier \texttt{bash}-spezifischer Code. Wir haben in der Präambel
+Syntaxhighlighting und eine extra Umgebung \texttt{lstbash} dafür definiert:
+%
+\begin{lstbash}
+# Hier eine einfache Bash for-Schleife
+for NUMMER in 1 2 3 4 5
+  touch datei_${NUMMER}.txt
+done
+echo 'Schleife beendet'
+\end{lstbash}
+%
+Hier ein Beispiel, um Code im Fliesstext einzubinden: Der Befehl
+\lstinline{mv *txt copy} verschiebt alle Textdateien in das
+Unterverzeichnis \lstinline{copy}.
+
+Zum Schluss noch einen Code-Block, den wir direkt aus einer \textit{Bash}-Datei
+nehmen. Hierzu haben wir uns den Befehl \texttt{lstinputbash} definiert:
+%
+\lstinputbash{for_schleife.sh}
+
+\end{document}
