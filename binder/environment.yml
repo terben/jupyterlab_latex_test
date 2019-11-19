@@ -1,5 +1,10 @@
 name: jupyterlab_latex_test
 
+channels:
+  - conda-forge
+
 dependencies:
   - python>=3.6
   - jupyterlab>=1.0
+  - pip:
+    - jupyterlab_latex
