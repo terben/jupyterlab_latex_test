@@ -2,4 +2,4 @@ name: jupyterlab_latex_test
 
 dependencies:
   - python>=3.6
-  - jupyter lab>=1.0
+  - jupyterlab>=1.0
